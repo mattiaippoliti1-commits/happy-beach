@@ -1,70 +1,114 @@
-# Getting Started with Create React App
+# 🏐 Happy Beach
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Happy Beach è una semplice applicazione React per la gestione di un torneo di beach volley.
 
-## Available Scripts
+L'app permette di inserire i risultati delle partite e genera automaticamente la classifica aggiornata in tempo reale.
 
-In the project directory, you can run:
+## Funzionalità
 
-### `npm start`
+- 📋 Calendario delle partite predefinito
+- 🏆 Classifica aggiornata automaticamente
+- 📊 Calcolo dei punti e dei set vinti/persi
+- 💾 Salvataggio automatico tramite Local Storage
+- 🔄 Reset completo del torneo
+- 📱 Interfaccia moderna e responsive
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Struttura del progetto
 
-### `npm test`
+```
+src/
+│
+├── App.js          # Interfaccia principale
+├── teams.js        # Elenco delle squadre
+├── matches.js      # Calendario iniziale delle partite
+├── index.js
+└── ...
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Regole della classifica
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Per ogni partita conclusa:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Vittoria → **3 punti**
+- Sconfitta → **0 punti**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+A parità di punti viene utilizzata la differenza:
 
-### `npm run eject`
+```
+Set vinti - Set persi
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Salvataggio dei dati
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Lo stato del torneo viene salvato automaticamente nel browser tramite **Local Storage**.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Alla riapertura dell'app il torneo viene ripristinato automaticamente.
 
-## Learn More
+Il pulsante **Reset** elimina tutti i risultati e ripristina il calendario iniziale.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Installazione
 
-### Code Splitting
+Clonare il repository:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+git clone <repository>
+```
 
-### Analyzing the Bundle Size
+Entrare nella cartella del progetto:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+cd volley-app
+```
 
-### Making a Progressive Web App
+Installare le dipendenze:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+npm install
+```
 
-### Advanced Configuration
+Avviare il server di sviluppo:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+npm start
+```
 
-### Deployment
+L'app sarà disponibile all'indirizzo:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```
+http://localhost:3000
+```
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Tecnologie utilizzate
+
+- React
+- JavaScript (ES6)
+- CSS inline
+- Local Storage API
+
+---
+
+## Possibili sviluppi futuri
+
+- Modal grafico per l'inserimento dei risultati
+- Raggruppamento delle partite per giornata
+- Ricerca delle squadre
+- Esportazione della classifica in PDF
+- Gestione di più tornei
+- Statistiche avanzate
+- Tema chiaro/scuro
+
+---
+
+## Autore
+
+Realizzato da **Mattia Ippoliti**.
