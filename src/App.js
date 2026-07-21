@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 
+// Per inserire immagini
+import backgroundImage from "./assets/sfondo-hb2026.webp";
+import logo from "./assets/LogoHB.webp";
+
 // 50 squadre
 // const teamsList = Array.from({ length: 50 }, (_, i) => `Squadra ${i + 1}`);
 
@@ -79,7 +83,15 @@ function App() {
   // =========================
   const container = {
     fontFamily: "Inter, Arial, sans-serif",
-    background: "#f5f7fb",
+    // background: "#f5f7fb",               sfondo bianco
+
+    // Per avere sfondo immagine
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed",
+
     padding: "16px",
     width: "100%",
     maxWidth: "100%",
@@ -127,25 +139,16 @@ function App() {
           padding: "12px 0"
         }}
       >
-        <h1
+        <img
+          src={logo}
+          alt="Happy Beach"
           style={{
-            margin: 0,
-            fontSize: "2.4rem",
-            fontWeight: 800,
-            letterSpacing: "-1px"
+            height: "200px",
+            width: "auto",
+            display: "block",
+            margin: "0 auto"
           }}
-        >
-          Happy Beach
-        </h1>
-        <p
-          style={{
-            marginTop: "8px",
-            color: "#6b7280",
-            fontSize: "1rem"
-          }}
-        >
-          Torneo 2026 boh modifica te manu
-        </p>
+        />
       </header>
 
       <div style={contentLayoutStyle}>
