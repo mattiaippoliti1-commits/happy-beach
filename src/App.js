@@ -171,20 +171,17 @@ function App() {
                     <th style={{ padding: "10px" }}>Set</th>
                   </tr>
                 </thead>
-
+              
                 <tbody>
                   {ranking.map((t, i) => (
                     <tr
                       key={i}
                       style={{
                         textAlign: "center",
+                        // Per camboiare il colore delle prime n posizioni
                         background:
-                          i === 0
-                            ? "#fff8dc"
-                            : i === 1
-                            ? "#f3f4f6"
-                            : i === 2
-                            ? "#fff2e8"
+                          i <= 31
+                            ? "#DCFCE7"
                             : "transparent",
                         borderBottom: "1px solid #eef2f7"
                       }}
@@ -192,7 +189,11 @@ function App() {
                       <td style={{ padding: "10px" }}>{i + 1}</td>
                       <td style={{ padding: "10px" }}>{t.team}</td>
                       <td style={{ padding: "10px" }}>{t.points}</td>
-                      <td style={{ padding: "10px" }}>{t.won}-{t.lost}</td>
+                      <td style={{ padding: "10px" }}>
+                        {/* // Per mettere il segno + davanti ai set vinti in più rispetto a quelli persi */}
+                        {t.won - t.lost > 0 ? "+" : ""}
+                        {t.won - t.lost}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -307,6 +308,23 @@ function App() {
                 }}
               >
                 {m.team2}
+              </div>
+
+              <div
+                style={{
+                  gridColumn: "1 / -1",
+                  marginTop: "8px",
+                  fontSize: "0.85rem",
+                  color: "#6b7280",
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: "16px",
+                  flexWrap: "wrap"
+                }}
+              >
+                <span>📍 {m.campo || "-"}</span>
+                <span>📅 {m.giorno || "-"}</span>
+                <span>⏰ {m.ora || "-"}</span>
               </div>
             </div>
           ))}
