@@ -11,6 +11,7 @@ import teams from "./teams.js";
 import initialMatches from "./matches.js";
 
 function App() {
+  const [logoSmall, setLogoSmall] = useState(false);
   // MATCHES
   const [matches, setMatches] = useState(() => {
     const saved = localStorage.getItem("matches");
@@ -21,6 +22,17 @@ function App() {
   useEffect(() => {
     localStorage.setItem("matches", JSON.stringify(matches));
   }, [matches]);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setLogoSmall(window.scrollY > 80);
+    };
+
+    window.addEventListener("scroll", onScroll);
+    onScroll();
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // RESET
   function resetTournament() {
@@ -131,22 +143,34 @@ function App() {
 
   return (
     <div style={container}>
-      
+      <div style={{ height: logoSmall ? "130px" : "220px", transition: "height 0.3s ease" }} />
       <header
         style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 1000,
           textAlign: "center",
           marginBottom: "24px",
-          padding: "12px 0"
+          padding: logoSmall ? "8px 0" : "16px 0",
+          background: logoSmall ? "rgba(255,255,255,0.92)" : "transparent",
+          backdropFilter: logoSmall ? "blur(10px)" : "none",
+          WebkitBackdropFilter: logoSmall ? "blur(10px)" : "none",
+          transition: "all 0.3s ease",
+          // Per aggiungere ombra quando si scrolla e il logo è piccolo
+          boxShadow: logoSmall ? "0 2px 12px rgba(0,0,0,0.08)" : "none",
         }}
       >
         <img
           src={logo}
           alt="Happy Beach"
           style={{
-            height: "200px",
+            height: logoSmall ? "110px" : "200px",
             width: "auto",
             display: "block",
-            margin: "0 auto"
+            margin: "0 auto",
+            transition: "height 0.3s ease"
           }}
         />
       </header>
@@ -209,7 +233,6 @@ function App() {
         <div
           style={{
             ...cardStyle,
-            height: "calc(100vh - 140px)",
             display: "flex",
             flexDirection: "column",
             minHeight: "72px"
@@ -235,8 +258,6 @@ function App() {
           </div>
           <div
             style={{
-              flex: 1,
-              overflowY: "auto",
               paddingRight: "6px"
             }}>
           {matches.map((m, i) => (
