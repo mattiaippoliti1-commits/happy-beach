@@ -131,14 +131,15 @@ function App() {
   };
   const contentLayoutStyle = {
     display: "grid",
-    gridTemplateColumns: "420px minmax(0, 1fr)",
+    gridTemplateColumns: "700px minmax(0, 1fr)",
     gap: "20px",
     alignItems: "start"
   };
 
   const stickyStyle = {
     position: "sticky",
-    top: "20px"
+    top: logoSmall ? "130px" : "220px",
+    alignSelf: "start"
   };
 
   return (
@@ -179,14 +180,22 @@ function App() {
         <div style={stickyStyle}>
 
           {/* CLASSIFICA */}
-          <div style={cardStyle}>
+          <div
+            style={{
+              ...cardStyle,
+              height: "calc(100vh - 160px)",
+              display: "flex",
+              flexDirection: "column"
+            }}
+          >
             <h2 style={{ marginTop: 0 }}>Classifica</h2>
 
             <div
               style={{
-                overflowX: "auto",
-                maxHeight: "600px",
-                overflowY: "auto"
+                flex: 1,
+                overflowY: "auto",
+                overflowX: "hidden",
+                paddingRight: "4px"
               }}
             >
               <table style={{ width: "100%", borderCollapse: "collapse" }}>
