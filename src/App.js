@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 // Per inserire immagini
 import backgroundImage from "./assets/sfondo-hb2026.webp";
@@ -12,11 +12,20 @@ import initialMatches from "./matches.js";
 
 function App() {
   const [logoSmall, setLogoSmall] = useState(false);
+  const [search, setSearch] = useState("");
+  const [showFilters, setShowFilters] = useState(false);
+  const [filterPlayed, setFilterPlayed] = useState("all");
+
   // MATCHES
   const [matches, setMatches] = useState(() => {
     const saved = localStorage.getItem("matches");
     return saved ? JSON.parse(saved) : initialMatches;
   });
+
+  const campi = [...new Set(matches.map(m => m.campo).filter(Boolean))].sort();
+  const giorni = [...new Set(matches.map(m => m.giorno).filter(Boolean))].sort();
+  const [filterCampo, setFilterCampo] = useState("all");
+  const [filterGiorno, setFilterGiorno] = useState("all");
 
   // SAVE
   useEffect(() => {
@@ -89,6 +98,32 @@ function App() {
     if (b.points !== a.points) return b.points - a.points;
     return (b.won - b.lost) - (a.won - a.lost);
   });
+
+  const filteredMatches = useMemo(() => {
+    const q = search.trim().toLowerCase();
+
+    return matches.filter(m => {
+      const matchesSearch =
+        !q ||
+        m.team1.toLowerCase().includes(q) ||
+        m.team2.toLowerCase().includes(q);
+
+      const played = m.sets1 != null && m.sets2 != null;
+
+      const matchesFilter =
+        filterPlayed === "all" ||
+        (filterPlayed === "played" && played) ||
+        (filterPlayed === "unplayed" && !played);
+
+      const matchesCampo =
+        filterCampo === "all" || m.campo === filterCampo;
+
+      const matchesGiorno =
+        filterGiorno === "all" || m.giorno === filterGiorno;
+
+      return matchesSearch && matchesFilter && matchesCampo && matchesGiorno;
+    });
+  }, [matches, search, filterPlayed, filterCampo, filterGiorno]);
 
   // =========================
   // UI STYLE
@@ -267,9 +302,53 @@ function App() {
           </div>
           <div
             style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              marginBottom: "18px"
+            }}
+          >
+            <input
+              type="text"
+              placeholder="🔍 Cerca squadra..."
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              style={{
+                flex: 1,
+                padding: "10px 14px",
+                borderRadius: "10px",
+                border: "1px solid #d1d5db",
+                fontSize: "0.95rem",
+                outline: "none"
+              }}
+            />
+
+            <button
+              type="button"
+              onClick={() => setShowFilters(true)}
+              style={{
+                width: "42px",
+                height: "42px",
+                borderRadius: "10px",
+                border: "1px solid #d1d5db",
+                background: "white",
+                cursor: "pointer",
+                fontSize: "1.1rem"
+              }}
+              title="Filtri"
+            >
+              ⚙️
+            </button>
+          </div>
+
+          {/* <div style={{ marginBottom: "12px", color: "#64748b", fontSize: "0.9rem" }}>
+            🏐 {filteredMatches.length} partite visualizzate su {matches.length}
+          </div> */}
+          <div
+            style={{
               paddingRight: "6px"
             }}>
-          {matches.map((m, i) => (
+          {filteredMatches.map((m, i) => (
             <div
               key={i}
               style={{
@@ -365,6 +444,115 @@ function App() {
         </div>
       </div>
 
+    {showFilters && (
+      <>
+        <div
+          onClick={() => setShowFilters(false)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0,0,0,0.35)",
+            zIndex: 1999
+          }}
+        />
+
+        <div
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            background: "white",
+            borderRadius: "16px",
+            padding: "24px",
+            width: "340px",
+            boxShadow: "0 20px 60px rgba(0,0,0,0.2)",
+            zIndex: 2000
+          }}
+        >
+          <h3 style={{ marginTop: 0 }}>Filtri</h3>
+
+          <label style={{ display: "block", marginBottom: "12px" }}>
+            <input
+              type="radio"
+              checked={filterPlayed === "all"}
+              onChange={() => setFilterPlayed("all")}
+            /> Tutte le partite
+          </label>
+
+          <label style={{ display: "block", marginBottom: "12px" }}>
+            <input
+              type="radio"
+              checked={filterPlayed === "played"}
+              onChange={() => setFilterPlayed("played")}
+            /> Solo giocate
+          </label>
+
+          <label style={{ display: "block", marginBottom: "20px" }}>
+            <input
+              type="radio"
+              checked={filterPlayed === "unplayed"}
+              onChange={() => setFilterPlayed("unplayed")}
+            /> Solo da giocare
+          </label>
+
+          <hr style={{ margin: "20px 0" }} />
+
+          <div style={{ marginBottom: "16px" }}>
+            <label style={{ display: "block", marginBottom: "6px", fontWeight: 600 }}>
+              Campo
+            </label>
+            <select
+              value={filterCampo}
+              onChange={e => setFilterCampo(e.target.value)}
+              style={{ width: "100%", padding: "8px", borderRadius: "8px" }}
+            >
+              <option value="all">Tutti</option>
+              {campi.map(c => (
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </select>
+          </div>
+
+          <div style={{ marginBottom: "20px" }}>
+            <label style={{ display: "block", marginBottom: "6px", fontWeight: 600 }}>
+              Giorno
+            </label>
+            <select
+              value={filterGiorno}
+              onChange={e => setFilterGiorno(e.target.value)}
+              style={{ width: "100%", padding: "8px", borderRadius: "8px" }}
+            >
+              <option value="all">Tutti</option>
+              {giorni.map(g => (
+                <option key={g} value={g}>{g}</option>
+              ))}
+            </select>
+          </div>
+
+          <div style={{ display: "flex", justifyContent: "space-between", gap: "10px" }}>
+            <button
+              onClick={() => {
+                setFilterPlayed("all");
+                setFilterCampo("all");
+                setFilterGiorno("all");
+                setSearch("");
+              }}
+              style={{ padding: "8px 14px" }}
+            >
+              Azzera filtri
+            </button>
+
+            <button
+              onClick={() => setShowFilters(false)}
+              style={{ padding: "8px 14px" }}
+            >
+              Chiudi
+            </button>
+          </div>
+        </div>
+      </>
+    )}
     </div>
   );
 }
