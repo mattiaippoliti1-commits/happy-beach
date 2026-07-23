@@ -385,7 +385,7 @@ const initialMatches = [
   {
     id: 39,
     team1: "Chat GPT non aiuta",
-    team2: "Theovellisti",
+    team2: "Thevolleisti",
     sets1: null,
     sets2: null,
     campo: "Campo 1",
@@ -425,7 +425,7 @@ const initialMatches = [
   {
     id: 43,
     team1: "I diversamente agili",
-    team2: "Theovellisti",
+    team2: "Thevolleisti",
     sets1: null,
     sets2: null,
     campo: "Campo 1",
@@ -679,7 +679,7 @@ const initialMatches = [
   {
     id: 68,
     team1: "Kinder Tetta e Latte",
-    team2: "Theovellisti",
+    team2: "Thevolleisti",
     sets1: null,
     sets2: null,
     campo: "Campo 2",
@@ -1201,7 +1201,7 @@ const initialMatches = [
 },
 {
   id: 120,
-  team1: "Theovellisti",
+  team1: "Thevolleisti",
   team2: "frecce rosse",
   sets1: null,
   sets2: null,
@@ -1502,7 +1502,7 @@ const initialMatches = [
 {
   id: 149,
   team1: "Vertical isso",
-  team2: "Theovellisti",
+  team2: "Thevolleisti",
   sets1: null,
   sets2: null,
   campo: "Campo 2",
