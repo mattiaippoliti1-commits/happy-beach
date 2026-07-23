@@ -239,7 +239,10 @@ function App() {
                     <th style={{ padding: "10px" }}>#</th>
                     <th style={{ padding: "10px" }}>Squadra</th>
                     <th style={{ padding: "10px" }}>Punti</th>
-                    <th style={{ padding: "10px" }}>Set</th>
+                    {/* <th style={{ padding: "10px" }}>Set</th> */}
+                    <th style={{ padding: "10px" }}>PF</th>
+                    <th style={{ padding: "10px" }}>PS</th>
+                    <th style={{ padding: "10px" }}>DP</th>
                   </tr>
                 </thead>
               
@@ -261,7 +264,12 @@ function App() {
                       <td style={{ padding: "10px" }}>{t.team}</td>
                       <td style={{ padding: "10px" }}>{t.points}</td>
                       <td style={{ padding: "10px" }}>
-                        {/* // Per mettere il segno + davanti ai set vinti in più rispetto a quelli persi */}
+                        {t.won}
+                      </td>
+                      <td style={{ padding: "10px" }}>
+                        {t.lost}
+                      </td>
+                      <td style={{ padding: "10px" }}>
                         {t.won - t.lost > 0 ? "+" : ""}
                         {t.won - t.lost}
                       </td>
