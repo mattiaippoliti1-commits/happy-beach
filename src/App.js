@@ -292,6 +292,7 @@ function App() {
         >
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
             <h2 style={{ margin: 0 }}>Partite</h2>
+            {/* <h2 style={{ margin: 0, color: "red" }}>PARTITE TEST</h2> */}
             <button
               onClick={resetTournament}
               style={{
