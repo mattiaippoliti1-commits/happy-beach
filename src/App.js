@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import {motion, AnimatePresence} from "framer-motion";
 
 // Per inserire immagini
 import backgroundImage from "./assets/sfondo-hb2026.webp";
@@ -248,32 +249,45 @@ function App() {
               
                 <tbody>
                   {ranking.map((t, i) => (
-                    <tr
-                      key={i}
-                      style={{
-                        textAlign: "center",
-                        // Per camboiare il colore delle prime n posizioni
-                        background:
-                          i <= 31
-                            ? "#DCFCE7"
-                            : "transparent",
-                        borderBottom: "1px solid #eef2f7"
-                      }}
-                    >
-                      <td style={{ padding: "10px" }}>{i + 1}</td>
-                      <td style={{ padding: "10px" }}>{t.team}</td>
-                      <td style={{ padding: "10px" }}>{t.points}</td>
-                      <td style={{ padding: "10px" }}>
-                        {t.won}
-                      </td>
-                      <td style={{ padding: "10px" }}>
-                        {t.lost}
-                      </td>
-                      <td style={{ padding: "10px" }}>
-                        {t.won - t.lost > 0 ? "+" : ""}
-                        {t.won - t.lost}
-                      </td>
-                    </tr>
+                    // <tr
+                    //   key={i}
+                    //   style={{
+                    //     textAlign: "center",
+                    //     // Per camboiare il colore delle prime n posizioni
+                    //     background:
+                    //       i <= 31
+                    //         ? "#DCFCE7"
+                    //         : "transparent",
+                    //     borderBottom: "1px solid #eef2f7"
+                    //   }}
+                    // >
+                <motion.tr
+                  key={t.team}
+                  layout
+                  transition={{
+                    layout: {
+                      duration: 0.45,
+                      type: "spring",
+                      stiffness: 280,
+                      damping: 28
+                    }
+                  }}
+                  style={{
+                    textAlign: "center",
+                    background: i <= 31 ? "#DCFCE7" : "transparent",
+                    borderBottom: "1px solid #eef2f7"
+                  }}
+                >
+                  <td style={{ padding: "10px" }}>{i + 1}</td>
+                  <td style={{ padding: "10px" }}>{t.team}</td>
+                  <td style={{ padding: "10px" }}>{t.points}</td>
+                  <td style={{ padding: "10px" }}>{t.won}</td>
+                  <td style={{ padding: "10px" }}>{t.lost}</td>
+                  <td style={{ padding: "10px" }}>
+                    {t.won - t.lost > 0 ? "+" : ""}
+                    {t.won - t.lost}
+                  </td>
+                </motion.tr>
                   ))}
                 </tbody>
               </table>
