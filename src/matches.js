@@ -295,7 +295,7 @@ const initialMatches = [
   {
     id: 30,
     team1: "Mugiwara",
-    team2: "I pallacolisti",
+    team2: "I pallalcolisti",
     sets1: null,
     sets2: null,
     campo: "Campo 1",
@@ -549,7 +549,7 @@ const initialMatches = [
   {
     id: 55,
     team1: "Gigio team",
-    team2: "I pallacolisti",
+    team2: "I pallalcolisti",
     sets1: null,
     sets2: null,
     campo: "Campo 2",
@@ -919,7 +919,7 @@ const initialMatches = [
   {
     id: 92,
     team1: "Ananas Space",
-    team2: "I pallacolisti",
+    team2: "I pallalcolisti",
     sets1: null,
     sets2: null,
     campo: "Campo 2",
@@ -1041,7 +1041,7 @@ const initialMatches = [
 },
 {
   id: 104,
-  team1: "I pallacolisti",
+  team1: "I pallalcolisti",
   team2: "Le bimbe del Grosso",
   sets1: null,
   sets2: null,
@@ -1397,7 +1397,7 @@ const initialMatches = [
 {
   id: 139,
   team1: "3 tigri contro 3 tigri",
-  team2: "I pallacolisti",
+  team2: "I pallalcolisti",
   sets1: null,
   sets2: null,
   campo: "Campo 1",
