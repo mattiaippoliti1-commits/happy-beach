@@ -214,7 +214,7 @@ const initialMatches = [
   },
   {
     id: 22,
-    team1: "di rigore",
+    team1: "Ogni volta che ci chiami una Guinness di rigore",
     team2: "4mendi",
     sets1: null,
     sets2: null,
@@ -414,7 +414,7 @@ const initialMatches = [
   },
   {
     id: 42,
-    team1: "Ogni volta che ci chiami una Guinness",
+    team1: "Ogni volta che ci chiami una Guinness di rigore",
     team2: "A i come lunga, e ee yeye si ripete",
     sets1: null,
     sets2: null,
@@ -558,7 +558,7 @@ const initialMatches = [
   },
   {
     id: 56,
-    team1: "Ogni volta che ci chiami una Guinness",
+    team1: "Ogni volta che ci chiami una Guinness di rigore",
     team2: "Le bimbe del Grosso",
     sets1: null,
     sets2: null,
@@ -1232,7 +1232,7 @@ const initialMatches = [
 {
   id: 123,
   team1: "Gigio team",
-  team2: "Ogni volta che ci chiami una Guinness",
+  team2: "Ogni volta che ci chiami una Guinness di rigore",
   sets1: null,
   sets2: null,
   campo: "Campo 3",
@@ -1481,7 +1481,7 @@ const initialMatches = [
 },
 {
   id: 147,
-  team1: "Ogni volta che ci chiami una Guinness",
+  team1: "Ogni volta che ci chiami una Guinness di rigore",
   team2: "Sbronzi di Riace",
   sets1: null,
   sets2: null,

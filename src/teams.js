@@ -32,7 +32,7 @@ const teams = [
   {id:31,name:"Paolo c’è!"},
   {id:32,name:"Gigio team"},
   {id:33,name:"A i come lunga, e ee yeye si ripete"},
-  {id:34,name:"Ogni volta che ci chiami una Guinness"},
+  {id:34,name:"Ogni volta che ci chiami una Guinness di rigore"},
   {id:35,name:"Sbronzi di Riace"},
   {id:36,name:"Chat GPT non aiuta"},
   {id:37,name:"Not your business"},
