@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import {motion, AnimatePresence} from "framer-motion";
+import {motion} from "framer-motion";
 
 // Per inserire immagini
 import backgroundImage from "./assets/sfondo-hb2026.webp";
