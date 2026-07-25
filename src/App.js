@@ -27,6 +27,7 @@ function App() {
   const giorni = [...new Set(matches.map(m => m.giorno).filter(Boolean))].sort();
   const [filterCampo, setFilterCampo] = useState("all");
   const [filterGiorno, setFilterGiorno] = useState("all");
+  const [sortBy, setSortBy] = useState("default");
 
   // SAVE
   useEffect(() => {
@@ -105,10 +106,37 @@ function App() {
     return (b.won - b.lost) - (a.won - a.lost);
   });
 
-  const filteredMatches = useMemo(() => {
+  // const filteredMatches = useMemo(() => {
+  //   const q = search.trim().toLowerCase();
+
+  //   return matches.filter(m => {
+  //     const matchesSearch =
+  //       !q ||
+  //       m.team1.toLowerCase().includes(q) ||
+  //       m.team2.toLowerCase().includes(q);
+
+  //     const played = m.sets1 != null && m.sets2 != null;
+
+  //     const matchesFilter =
+  //       filterPlayed === "all" ||
+  //       (filterPlayed === "played" && played) ||
+  //       (filterPlayed === "unplayed" && !played);
+
+  //     const matchesCampo =
+  //       filterCampo === "all" || m.campo === filterCampo;
+
+  //     const matchesGiorno =
+  //       filterGiorno === "all" || m.giorno === filterGiorno;
+
+  //     return matchesSearch && matchesFilter && matchesCampo && matchesGiorno;
+  //   });
+  // }, [matches, search, filterPlayed, filterCampo, filterGiorno]);
+
+
+    const filteredMatches = useMemo(() => {
     const q = search.trim().toLowerCase();
 
-    return matches.filter(m => {
+    const result = matches.filter(m => {
       const matchesSearch =
         !q ||
         m.team1.toLowerCase().includes(q) ||
@@ -127,9 +155,49 @@ function App() {
       const matchesGiorno =
         filterGiorno === "all" || m.giorno === filterGiorno;
 
-      return matchesSearch && matchesFilter && matchesCampo && matchesGiorno;
+      return (
+        matchesSearch &&
+        matchesFilter &&
+        matchesCampo &&
+        matchesGiorno
+      );
     });
-  }, [matches, search, filterPlayed, filterCampo, filterGiorno]);
+
+    const giornoValue = giorno => {
+      const g = (giorno || "").toLowerCase();
+
+      if (g.includes("sab")) return 0;
+      if (g.includes("dom")) return 1;
+      return 99;
+    };
+
+    if (sortBy === "time-asc") {
+      result.sort((a, b) => {
+        const dayDiff = giornoValue(a.giorno) - giornoValue(b.giorno);
+        if (dayDiff !== 0) return dayDiff;
+
+        return (a.ora || "").localeCompare(b.ora || "");
+      });
+    }
+
+    if (sortBy === "time-desc") {
+      result.sort((a, b) => {
+        const dayDiff = giornoValue(b.giorno) - giornoValue(a.giorno);
+        if (dayDiff !== 0) return dayDiff;
+
+        return (b.ora || "").localeCompare(a.ora || "");
+      });
+    }
+
+    return result;
+  }, [
+    matches,
+    search,
+    filterPlayed,
+    filterCampo,
+    filterGiorno,
+    sortBy
+  ]);
 
   // =========================
   // UI STYLE
@@ -543,6 +611,32 @@ function App() {
             </select>
           </div>
 
+          <div style={{ marginBottom: "20px" }}>
+  <label
+    style={{
+      display: "block",
+      marginBottom: "6px",
+      fontWeight: 600
+    }}
+  >
+    Ordina per
+  </label>
+
+  <select
+    value={sortBy}
+    onChange={e => setSortBy(e.target.value)}
+    style={{
+      width: "100%",
+      padding: "8px",
+      borderRadius: "8px"
+    }}
+  >
+    <option value="default">Ordine originale</option>
+    <option value="time-asc">Orario crescente</option>
+    <option value="time-desc">Orario decrescente</option>
+  </select>
+</div>
+
           <div style={{ display: "flex", justifyContent: "space-between", gap: "10px" }}>
             <button
               onClick={() => {
@@ -550,6 +644,7 @@ function App() {
                 setFilterCampo("all");
                 setFilterGiorno("all");
                 setSearch("");
+                setSortBy("default");
               }}
               style={{ padding: "8px 14px" }}
             >
