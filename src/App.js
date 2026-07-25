@@ -88,10 +88,15 @@ function App() {
     t2.won += m.sets2;
     t2.lost += m.sets1;
 
+    const winnerScore = Math.max(m.sets1, m.sets2);
+    const wentToAdvantages = winnerScore > 21;
+
     if (m.sets1 > m.sets2) {
-      t1.points += 3;
+      t1.points += wentToAdvantages ? 2 : 3;
+      t2.points += wentToAdvantages ? 1 : 0;
     } else {
-      t2.points += 3;
+      t2.points += wentToAdvantages ? 2 : 3;
+      t1.points += wentToAdvantages ? 1 : 0;
     }
   });
 
