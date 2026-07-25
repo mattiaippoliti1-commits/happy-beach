@@ -82,7 +82,12 @@ function App() {
   matches.forEach(m => {
     if (m.sets1 == null || m.sets2 == null) return;
     const t1 = table[m.team1];
-    const t2 = table[m.team2];
+  const t2 = table[m.team2];
+
+  if (!t1 || !t2) {
+    console.error("Squadra non trovata:", m);
+    return;
+}
 
     t1.won += m.sets1;
     t1.lost += m.sets2;

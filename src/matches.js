@@ -45,7 +45,7 @@ const initialMatches = [
   {
     id: 5,
     team1: "I belli e la bestia",
-    team2: "Picciosstriker",
+    team2: "Piccionstriker",
     sets1: null,
     sets2: null,
     campo: "Campo 1",
@@ -175,7 +175,7 @@ const initialMatches = [
   {
     id: 18,
     team1: "Corza e Foraggio",
-    team2: "Picciosstriker",
+    team2: "Piccionstriker",
     sets1: null,
     sets2: null,
     campo: "Campo 1",
@@ -819,7 +819,7 @@ const initialMatches = [
   {
     id: 82,
     team1: "Chi ama la patata batta le mani",
-    team2: "Picciostriker",
+    team2: "Piccionstriker",
     sets1: null,
     sets2: null,
     campo: "Campo 2",
@@ -1021,7 +1021,7 @@ const initialMatches = [
 },
 {
   id: 102,
-  team1: "Picciostriker",
+  team1: "Piccionstriker",
   team2: "Paolo c'è!",
   sets1: null,
   sets2: null,
@@ -1442,7 +1442,7 @@ const initialMatches = [
 {
   id: 143,
   team1: "Piace, sono pronti gli spiedini",
-  team2: "Picciostriker",
+  team2: "Piccionstriker",
   sets1: null,
   sets2: null,
   campo: "Campo 2",
