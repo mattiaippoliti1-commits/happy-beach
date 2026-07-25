@@ -45,11 +45,11 @@ function App() {
   }, []);
 
   // RESET
-  function resetTournament() {
-    if (!window.confirm("Vuoi cancellare tutto il torneo?")) return;
-    localStorage.removeItem("matches");
-    setMatches(initialMatches);
-  }
+  // function resetTournament() {
+  //   if (!window.confirm("Vuoi cancellare tutto il torneo?")) return;
+  //   localStorage.removeItem("matches");
+  //   setMatches(initialMatches);
+  // }
 
   function updateMatch(id, field, value) {
     setMatches(matches =>
@@ -307,21 +307,6 @@ function App() {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
             <h2 style={{ margin: 0 }}>Partite</h2>
             {/* <h2 style={{ margin: 0, color: "red" }}>PARTITE TEST</h2> */}
-            <button
-              onClick={resetTournament}
-              style={{
-                padding: "8px 14px",
-                border: "none",
-                borderRadius: "8px",
-                background: "#b91c1c",
-                color: "white",
-                cursor: "pointer",
-                fontWeight: 700,
-                transition: "0.2s"
-              }}
-            >
-              Reset
-            </button>
           </div>
           <div
             style={{
